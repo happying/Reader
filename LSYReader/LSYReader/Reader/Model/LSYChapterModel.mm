@@ -12,8 +12,7 @@
 #import "NSString+HTML.h"
 #include <vector>
 @interface LSYChapterModel ()
-@property (nonatomic) std::vector<NSUInteger> pages;
-@property (nonatomic,strong) NSMutableArray *pageArray;
+
 @end
 
 @implementation LSYChapterModel
