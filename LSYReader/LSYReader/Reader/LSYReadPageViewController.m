@@ -386,10 +386,18 @@
 {
     [super viewDidLayoutSubviews];
 
-    _pageViewController.view.frame = self.view.frame;
-    _menuView.frame = self.view.frame;
-    _catalogView.frame = CGRectMake(-ViewSize(self.view).width, 0, 2*ViewSize(self.view).width, ViewSize(self.view).height);
-    _catalogVC.view.frame = CGRectMake(0, 0, ViewSize(self.view).width-100, ViewSize(self.view).height);
+    
+    if (@available(iOS 11.0, *)){
+        _pageViewController.view.frame = self.view.frame;
+        _menuView.frame = self.view.frame;
+        _catalogVC.view.frame = CGRectMake(0, 0, ViewSize(self.view).width-100, ViewSize(self.view).height);
+    } else {
+        _pageViewController.view.frame = self.view.frame;
+        _menuView.frame = self.view.frame;
+        _catalogView.frame = CGRectMake(-ViewSize(self.view).width, 0, 2*ViewSize(self.view).width, ViewSize(self.view).height);
+        _catalogVC.view.frame = CGRectMake(0, 0, ViewSize(self.view).width-100, ViewSize(self.view).height);
+    }
+    
     [_catalogVC reload];
 }
 @end

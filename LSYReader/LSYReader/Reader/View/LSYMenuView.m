@@ -111,7 +111,16 @@
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    _topView.frame = CGRectMake(0, -TopViewHeight, ViewSize(self).width,TopViewHeight);
-    _bottomView.frame = CGRectMake(0, ViewSize(self).height, ViewSize(self).width,BottomViewHeight);
+    
+    if (@available(iOS 11.0, *)){
+        // do nothing.
+        // looks the layout of view in iOS 11 is different with iOS 10.
+    } else {
+        _topView.frame = CGRectMake(0, -TopViewHeight, ViewSize(self).width,TopViewHeight);
+        _bottomView.frame = CGRectMake(0, ViewSize(self).height, ViewSize(self).width,BottomViewHeight);
+    }
+    
+    
+
 }
 @end
