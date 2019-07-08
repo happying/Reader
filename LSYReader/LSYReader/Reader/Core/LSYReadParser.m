@@ -25,7 +25,7 @@
 +(NSDictionary *)parserAttribute:(LSYReadConfig *)config
 {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[NSForegroundColorAttributeName] = config.fontColor;
+    dict[NSForegroundColorAttributeName] = [UIColor redColor];
     dict[NSFontAttributeName] = [UIFont systemFontOfSize:config.fontSize];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = config.lineSpace;
