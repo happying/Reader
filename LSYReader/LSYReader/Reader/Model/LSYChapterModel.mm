@@ -11,6 +11,7 @@
 #import "LSYReadParser.h"
 #import "NSString+HTML.h"
 #include <vector>
+#import "YYText.h"
 @interface LSYChapterModel ()
 
 @end
@@ -57,6 +58,7 @@
     NSMutableAttributedString *attrString = [[NSMutableAttributedString  alloc] initWithString:self.content];
     NSDictionary *attribute = [LSYReadParser parserAttribute:[LSYReadConfig shareInstance]];
     [attrString setAttributes:attribute range:NSMakeRange(0, attrString.length)];
+    _attributedContent = attrString;
     
     CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attrString);
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);

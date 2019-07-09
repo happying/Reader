@@ -12,6 +12,7 @@
 @interface LSYChapterModel : NSObject<NSCopying,NSCoding>
 @property (nonatomic,strong) NSMutableArray *pageArray;
 @property (nonatomic,strong) NSString *content;
+@property (nonatomic, strong) NSAttributedString* attributedContent;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,assign) NSUInteger chapterIndex;
 @property (nonatomic) NSUInteger pageCount;

@@ -11,8 +11,10 @@
 #import "LSYNoteModel.h"
 #import "LSYReadViewController.h"
 #import "LSYMagnifierView.h"
+#import "YYText.h"
 @interface LSYReadView ()
 @property (nonatomic,strong) LSYMagnifierView *magnifierView;
+@property (nonatomic, strong) YYLabel* contentLabel;
 @end
 @implementation LSYReadView
 {
@@ -30,10 +32,20 @@
     BOOL _selectState;
     BOOL _direction; //滑动方向  (0---左侧滑动 1 ---右侧滑动)
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    self.contentLabel.frame = self.bounds;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _contentLabel = [[YYLabel alloc] init];
+        _contentLabel.numberOfLines = 0;
+        _contentLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
+        [self addSubview:_contentLabel];
         [self setBackgroundColor:[UIColor clearColor]];
         [self addGestureRecognizer:({
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
@@ -267,21 +279,33 @@
         _frameRef = nil;
     }
 }
--(void)drawRect:(CGRect)rect
-{
-    if (!_frameRef) {
-        return;
-    }
+//-(void)drawRect:(CGRect)rect
+//{
+//    if (!_frameRef) {
+//        return;
+//    }
+//
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
+//    CGContextTranslateCTM(ctx, 0, self.bounds.size.height);
+//    CGContextScaleCTM(ctx, 1.0, -1.0);
+//    CGRect leftDot,rightDot = CGRectZero;
+//    _menuRect = CGRectZero;
+//    [self drawSelectedPath:_pathArray LeftDot:&leftDot RightDot:&rightDot];
+//    CTFrameDraw(_frameRef, ctx);
+//    [self drawDotWithLeft:leftDot right:rightDot];
+//}
 
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
-    CGContextTranslateCTM(ctx, 0, self.bounds.size.height);
-    CGContextScaleCTM(ctx, 1.0, -1.0);
-    CGRect leftDot,rightDot = CGRectZero;
-    _menuRect = CGRectZero;
-    [self drawSelectedPath:_pathArray LeftDot:&leftDot RightDot:&rightDot];
-    CTFrameDraw(_frameRef, ctx);
-    [self drawDotWithLeft:leftDot right:rightDot];
+#pragma mark - setter
+
+- (void)setAttributedContent:(NSAttributedString *)attributedContent {
+    _attributedContent = attributedContent;
+    self.contentLabel.attributedText = attributedContent;
+}
+
+- (void)setTextLayout:(YYTextLayout *)textLayout {
+    _textLayout = textLayout;
+    self.contentLabel.textLayout = textLayout;
 }
 
 @end

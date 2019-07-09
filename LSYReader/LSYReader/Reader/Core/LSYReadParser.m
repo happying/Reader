@@ -8,12 +8,34 @@
 
 #import "LSYReadParser.h"
 #import "LSYReadConfig.h"
+
 @implementation LSYReadParser
+
++ (YYTextLayout *)layoutWithContent:(NSString *)content config:(LSYReadConfig *)parser bouds:(CGRect)bounds {
+    NSMutableAttributedString *attributedString = [[self attributedContentWith:content config:parser] mutableCopy];
+    
+    YYTextLayout* layout = [YYTextLayout layoutWithContainerSize:bounds.size text:attributedString];
+    
+    return layout;
+}
+
++ (NSAttributedString *)attributedContentWith:(NSString *)content config:(LSYReadConfig *)parser {
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content];
+    NSDictionary *attribute = [self parserAttribute:parser];
+    [attributedString setAttributes:attribute range:NSMakeRange(0, content.length)];
+    attributedString.yy_alignment = NSTextAlignmentLeft;
+    
+    return attributedString;
+}
+
 +(CTFrameRef)parserContent:(NSString *)content config:(LSYReadConfig *)parser bouds:(CGRect)bounds
 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content];
     NSDictionary *attribute = [self parserAttribute:parser];
     [attributedString setAttributes:attribute range:NSMakeRange(0, content.length)];
+    
+//    YYTextLayout* layout = [YYTextLayout layoutWithContainerSize:bounds.size text:attributedString];
+    
     CTFramesetterRef setterRef = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)attributedString);
     CGPathRef pathRef = CGPathCreateWithRect(bounds, NULL);
     CTFrameRef frameRef = CTFramesetterCreateFrame(setterRef, CFRangeMake(0, 0), pathRef, NULL);

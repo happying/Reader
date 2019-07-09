@@ -4,19 +4,13 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LSYReader/Reader/LSYReadPageViewController.m"
-            timestampString = "584286667.767176"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
-            landmarkName = "-pageViewController:viewControllerBeforeViewController:"
-            landmarkType = "7">
+            scope = "0"
+            stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -25,13 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LSYReader/Reader/LSYReadPageViewController.m"
-            timestampString = "584286674.679107"
+            filePath = "LSYReader/Reader/Model/LSYChapterModel.mm"
+            timestampString = "584374952.735487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
-            landmarkName = "-pageViewController:viewControllerAfterViewController:"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-paginateWithBounds:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

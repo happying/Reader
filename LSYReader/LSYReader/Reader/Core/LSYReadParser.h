@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "LSYReadConfig.h"
+#import "YYText.h"
+
 @interface LSYReadParser : NSObject
++ (NSAttributedString *)attributedContentWith:(NSString *)content config:(LSYReadConfig *)parser;
++ (YYTextLayout *)layoutWithContent:(NSString *)content config:(LSYReadConfig *)parser bouds:(CGRect)bounds;
 +(CTFrameRef)parserContent:(NSString *)content config:(LSYReadConfig *)parser bouds:(CGRect)bounds;
 +(NSDictionary *)parserAttribute:(LSYReadConfig *)config;
 //根据触碰点获取当前文字的索引

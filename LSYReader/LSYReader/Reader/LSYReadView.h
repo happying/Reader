@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YYText.h"
+
 @protocol LSYReadViewControllerDelegate;
 @interface LSYReadView : UIView
 @property (nonatomic,assign) CTFrameRef frameRef;
+@property (nonatomic, strong) YYTextLayout* textLayout;
+@property (nonatomic, strong) NSAttributedString* attributedContent;
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) id<LSYReadViewControllerDelegate>delegate;
 -(void)cancelSelected;
