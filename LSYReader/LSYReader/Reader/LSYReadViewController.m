@@ -36,8 +36,8 @@
         _readView = [[LSYReadView alloc] initWithFrame:CGRectMake(LeftSpacing,TopSpacing, [UIScreen mainScreen].bounds.size.width-LeftSpacing-RightSpacing, [UIScreen mainScreen].bounds.size.height-TopSpacing-BottomSpacing)];
         LSYReadConfig *config = [LSYReadConfig shareInstance];
         _readView.frameRef = [LSYReadParser parserContent:_content config:config bouds:CGRectMake(0,0, _readView.frame.size.width, _readView.frame.size.height)];
-        _readView.textLayout = [LSYReadParser layoutWithContent:_content config:config bouds:CGRectMake(0,0, _readView.frame.size.width, _readView.frame.size.height)];
-//        _readView.attributedContent = [LSYReadParser attributedContentWith:_content config:config];
+//        _readView.textLayout = [LSYReadParser layoutWithContent:_content config:config bouds:CGRectMake(0,0, _readView.frame.size.width, _readView.frame.size.height)];
+        _readView.attributedContent = [LSYReadParser attributedContentWith:_content config:config];
         _readView.content = _content;
         _readView.delegate = self;
     }

@@ -60,7 +60,9 @@
     [attrString setAttributes:attribute range:NSMakeRange(0, attrString.length)];
     _attributedContent = attrString;
     
-    CTFramesetterRef frameSetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef) attrString);
+    YYTextLayout* layout = [LSYReadParser layoutWithContent:self.content config:[LSYReadConfig shareInstance] bouds:bounds];
+    
+    CTFramesetterRef frameSetter = layout.frameSetter;
     CGPathRef path = CGPathCreateWithRect(bounds, NULL);
     int currentOffset = 0;
     int currentInnerOffset = 0;
@@ -122,7 +124,7 @@
     }
     
     CGPathRelease(path);
-    CFRelease(frameSetter);
+//    CFRelease(frameSetter);
 //    _pageCount = _pages.size();
     _pageCount = _pageArray.count;
 }
